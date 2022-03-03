@@ -92,7 +92,15 @@ form {
   align-items: center;
 }
 
-.randomized-npc-info span {
+.randomized-npc-info span,
+.monster-generator span {
   color: navy;
   font-weight: bolder;
+}
+
+.monster-generator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

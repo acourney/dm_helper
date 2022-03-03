@@ -32,7 +32,7 @@ function MonsterGenerator(props) {
   }, []);
 
   return (
-    <main>
+    <main className="monster-generator">
       <p>Hello from MonsterGenerator</p>
       {isLoading ? (
         <p>Generating Info...</p>
