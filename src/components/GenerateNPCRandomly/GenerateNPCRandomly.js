@@ -5,8 +5,8 @@
 import React, { useEffect, useState } from "react";
 
 function GenerateNPCRandomly(props) {
-  const [race, setRace] = useState([]);
-  const [npcClass, setNpcClass] = useState([]);
+  const [npcInfo, setNpcInfo] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   const raceURL = "https://api.open5e.com/races/";
   //languages will be pulled out of the race data
@@ -33,33 +33,56 @@ function GenerateNPCRandomly(props) {
     "Frilbu Rirgoci",
   ];
 
-  // FOR NOW: HARDCODED DATA SO I DON'T OVERLOAD THEIR API
+  // // pull from race api
+  // useEffect(() => {
+  //   fetch(raceURL)
+  //     .then((res) => res.json())
+  //     .then((raceData) => {
+  //       setRace(raceData);
+  //     })
+  //     .catch((err) => console.error(`Oops, something went wrong: ${err}`));
+  // }, []);
 
-  // pull from race api
-  useEffect(() => {
-    fetch(raceURL)
-      .then((res) => res.json())
-      .then((raceData) => {
-        setRace(raceData);
-      })
-      .catch((err) => console.error(`Oops, something went wrong: ${err}`));
-  }, []);
+  // // pull from class api
+  // useEffect(() => {
+  //   fetch(classURL)
+  //     .then((res) => res.json())
+  //     .then((classData) => {
+  //       setNpcClass(classData);
+  //     })
+  //     .catch((err) => console.error(`Oops, something went wrong: ${err}`));
+  // }, []);
 
-  // pull from class api
   useEffect(() => {
-    fetch(classURL)
-      .then((res) => res.json())
-      .then((classData) => {
-        setNpcClass(classData);
+    Promise.all([
+      fetch(raceURL).then((res) => res.json()),
+      fetch(classURL).then((res) => res.json()),
+    ])
+      .then((data) => {
+        // console.log(data);
+        setNpcInfo(data);
+        setLoading(false);
       })
-      .catch((err) => console.error(`Oops, something went wrong: ${err}`));
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   function randomize(arr) {
-    const arrLength = arr.length;
-    const random_index = Math.floor(Math.random() * arrLength);
-    return random_index;
+    if (arr.length > 0) {
+      const arrLength = arr.length;
+      const random_index = Math.floor(Math.random() * arrLength);
+      return random_index;
+    }
   }
+
+  // function checkDataLength(arr1, arr2) {
+  //   if (arr1.length <= 0 && arr2.length <= 0) {
+  //     return false;
+  //   } else if (arr1.length > 0 && arr2.length > 0) {
+  //     return true;
+  //   }
+  // }
 
   return (
     <main className="randomized-npc-info">
@@ -68,19 +91,46 @@ function GenerateNPCRandomly(props) {
         <span>Name: </span>
         {names[randomize(names)]}
       </p>
-      <p>
-        <span>Race: </span>
+      {isLoading ? (
+        <p>Generating Info...</p>
+      ) : (
+        <div className="displayNPCInfo">
+          <p>
+            <span>Race: </span>
 
-        {race.results[randomize(race.results)].name}
-      </p>
-      <p>
-        <span>Languages: </span>
-        {race.results[randomize(race.results)].languages}
-      </p>
-      <p>
-        <span>Class: </span>
-        {npcClass.results[randomize(npcClass.results)].name}
-      </p>
+            {npcInfo[0].results[0].name}
+            {/* {race.results[randomize(race.results)].name} */}
+            {console.log(npcInfo)}
+          </p>
+          <p>
+            <span>Languages: </span>
+            {npcInfo[0].results[0].languages}
+            {/* {race.results[randomize(race.results)].languages} */}
+          </p>
+          <p>
+            <span>Class: </span>
+            {npcInfo[1].results[0].name}
+          </p>
+        </div>
+      )}
+
+      {/* {checkDataLength(race.results, npcClass.results) ? (
+        <div className="displayNPCInfo">
+          <p>
+            <span>Race: </span>
+
+            {race.results[randomize(race.results)].name}
+          </p>
+          <p>
+            <span>Languages: </span>
+            {race.results[randomize(race.results)].languages}
+          </p>
+          <p>
+            <span>Class: </span>
+            {npcClass.results[randomize(npcClass.results)].name}
+          </p>
+        </div>
+      ) : null} */}
     </main>
   );
 }
