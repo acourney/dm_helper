@@ -2,18 +2,23 @@ import React from "react";
 import { useState } from "react";
 
 function PartyInput(props) {
+  const [submitted, setSubmitted] = useState(false);
+
+  function toggleSubmitted() {
+    return setSubmitted(true);
+  }
+
   const initialState = {
-    partySize: 0,
-    partyLevel: 0,
+    partySize: "",
+    partyLevel: "",
   };
 
   const [formState, setFormState] = useState(initialState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("you submitted the form");
-    console.log(formState);
-    setFormState(initialState);
+    toggleSubmitted();
+    console.log(submitted);
   };
 
   const handleChange = (event) => {
@@ -21,27 +26,35 @@ function PartyInput(props) {
   };
 
   return (
-    <main>
+    <main className="user-party-form">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="party-size">Input the size of your party:</label>
+        <label htmlFor="partySize">Input the size of your party:</label>
         <input
-          id="party-size"
+          id="partySize"
           type="number"
-          value={formState.subject}
+          value={formState.partySize}
           onChange={handleChange}
         />
 
-        <label htmlFor="party-level">
+        <label htmlFor="partyLevel">
           Input the average level of your party members:
         </label>
         <input
-          id="party-level"
+          id="partyLevel"
           type="number"
-          value={formState.subject}
+          value={formState.partyLevel}
           onChange={handleChange}
         />
 
         <button type="submit">Enter</button>
+        {submitted ? (
+          <div className="party-info-submitted">
+            <p>Your party size has been saved as {formState.partySize}</p>
+            <p> Your average level has been saved as {formState.partyLevel}</p>
+          </div>
+        ) : (
+          <p></p>
+        )}
       </form>
     </main>
   );
