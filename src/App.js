@@ -47,7 +47,10 @@ function App() {
             <Route path="/npc-options" element={<NPCGeneratorButtons />} />
             <Route path="/class-list" element={<GenerateNPCByClass />} />
             <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
-            <Route path={`/generate-:class`} element={<SpecificClassNPC />} />
+            <Route
+              path={`/generate-:npcClass`}
+              element={<SpecificClassNPC />}
+            />
           </Routes>
         </DataContext.Provider>
       </div>
