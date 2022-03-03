@@ -36,19 +36,16 @@ function App() {
       </header>
 
       <div className="routes">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Navigate to="/" />} />
-
-          <Route path="/npc-options" element={<NPCGeneratorButtons />} />
-          <Route path="/class-list" element={<GenerateNPCByClass />} />
-          <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
-        </Routes>
-
         <DataContext.Provider value={{ formState, setFormState }}>
           <Routes>
             <Route path="/input" element={<PartyInput />} />
             <Route path="/monster-generator" element={<MonsterGenerator />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Navigate to="/" />} />
+
+            <Route path="/npc-options" element={<NPCGeneratorButtons />} />
+            <Route path="/class-list" element={<GenerateNPCByClass />} />
+            <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
           </Routes>
         </DataContext.Provider>
       </div>
