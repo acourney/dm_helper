@@ -1,23 +1,33 @@
 import React from "react";
-import { Link, Navigation, Route, Routes } from "react-router-dom";
+import { Route, Link, Routes, Navigate } from "react-router-dom";
 
-import logo from "./logo.svg";
 import "./App.css";
 
-import Nav from "./components/Nav/Nav";
-import Header from "./components/Header/Header";
+import PartyInput from "./components/PartyInput/PartyInput";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
     <div className="App">
       <nav>
-        <Nav />
+        <Link to="/">Home</Link>
+        <Link to="/input">Input</Link>
       </nav>
+
       <header>
-        <Header />
+        <h1>
+          <Link to="/">DM Helper</Link>
+        </h1>
       </header>
 
-      <main></main>
+      <div className="routes">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Navigate to="/" />} />
+
+          <Route path="/input" element={<PartyInput />} />
+        </Routes>
+      </div>
     </div>
   );
 }
