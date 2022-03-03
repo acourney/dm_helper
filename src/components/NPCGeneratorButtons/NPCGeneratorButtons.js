@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Routes, Route } from "react-router-dom";
 
 function NPCGeneratorButtons(props) {
   return (
@@ -6,8 +7,12 @@ function NPCGeneratorButtons(props) {
       Choose a class for your NPC or generate a completely random npc with the
       buttons below:
       <div className="button-container">
-        <button>Go to Class List</button>
-        <button>Completely Randomize my NPC</button>
+        <Link to="/class-list">
+          <button>Go to Class List</button>
+        </Link>
+        <Link to="/npc-randomizer">
+          <button>Completely Randomize my NPC</button>
+        </Link>
       </div>
     </main>
   );

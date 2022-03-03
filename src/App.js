@@ -7,6 +7,8 @@ import PartyInput from "./components/PartyInput/PartyInput";
 import NPCGeneratorButtons from "./components/NPCGeneratorButtons/NPCGeneratorButtons";
 import MonsterGenerator from "./components/MonsterGenerator/MonsterGenerator";
 import Home from "./components/Home/Home";
+import GenerateNPCByClass from "./components/GenerateNPCByClass/GenerateNPCByClass";
+import GenerateNPCRandomly from "./components/GenerateNPCRandomly/GenerateNPCRandomly";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/input" element={<PartyInput />} />
           <Route path="/monster-generator" element={<MonsterGenerator />} />
           <Route path="/npc-options" element={<NPCGeneratorButtons />} />
+          <Route path="/class-list" element={<GenerateNPCByClass />} />
+          <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
         </Routes>
       </div>
     </div>
