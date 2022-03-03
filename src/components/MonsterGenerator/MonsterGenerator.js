@@ -31,6 +31,19 @@ function MonsterGenerator(props) {
       .catch((err) => console.error(`Oops, something went wrong: ${err}`));
   }, []);
 
+  function handleClick() {
+    fetch(URL)
+      .then((res) => res.json())
+      .then((data) => {
+        setMonsterData(data);
+        console.log(data);
+        setLoading(false);
+        // console.log(raceData.results);
+      })
+      .catch((err) => console.error(`Oops, something went wrong: ${err}`));
+    console.log("you requested a new monster");
+  }
+
   return (
     <main className="monster-generator">
       <p>Hello from MonsterGenerator</p>
@@ -65,6 +78,7 @@ function MonsterGenerator(props) {
           <p>
             <span>Abilities: </span>
           </p>
+          <button onClick={handleClick}>Generate New Monster</button>
         </div>
       )}
     </main>
