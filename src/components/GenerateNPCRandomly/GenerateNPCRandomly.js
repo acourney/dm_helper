@@ -41,8 +41,6 @@ function GenerateNPCRandomly(props) {
       .then((res) => res.json())
       .then((raceData) => {
         setRace(raceData);
-
-        // console.log(raceData.results);
       })
       .catch((err) => console.error(`Oops, something went wrong: ${err}`));
   }, []);
@@ -53,7 +51,6 @@ function GenerateNPCRandomly(props) {
       .then((res) => res.json())
       .then((classData) => {
         setNpcClass(classData);
-        // console.log(classData.results);
       })
       .catch((err) => console.error(`Oops, something went wrong: ${err}`));
   }, []);
