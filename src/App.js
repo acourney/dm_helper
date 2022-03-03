@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Link, Routes, Navigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { DataContext } from "./dataContext";
 
 import "./App.css";
 
@@ -11,6 +13,13 @@ import GenerateNPCByClass from "./components/GenerateNPCByClass/GenerateNPCByCla
 import GenerateNPCRandomly from "./components/GenerateNPCRandomly/GenerateNPCRandomly";
 
 function App() {
+  const initialState = {
+    partySize: "",
+    partyLevel: "",
+  };
+
+  const [formState, setFormState] = useState(initialState);
+
   return (
     <div className="App">
       <nav>
@@ -31,12 +40,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Navigate to="/" />} />
 
-          <Route path="/input" element={<PartyInput />} />
-          <Route path="/monster-generator" element={<MonsterGenerator />} />
           <Route path="/npc-options" element={<NPCGeneratorButtons />} />
           <Route path="/class-list" element={<GenerateNPCByClass />} />
           <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
         </Routes>
+
+        <DataContext.Provider value={{ formState, setFormState }}>
+          <Routes>
+            <Route path="/input" element={<PartyInput />} />
+            <Route path="/monster-generator" element={<MonsterGenerator />} />
+          </Routes>
+        </DataContext.Provider>
       </div>
     </div>
   );

@@ -1,19 +1,25 @@
+// TODO
+// Clear input fields on submission without clearing state
+// submitted only gets toggled when the button is clicked twice
 import React from "react";
-import { useState } from "react";
+import { DataContext } from "../../dataContext";
+import { useState, useContext } from "react";
 
 function PartyInput(props) {
   const [submitted, setSubmitted] = useState(false);
+
+  const { formState, setFormState } = useContext(DataContext);
 
   function toggleSubmitted() {
     return setSubmitted(true);
   }
 
-  const initialState = {
-    partySize: "",
-    partyLevel: "",
-  };
+  // const initialState = {
+  //   partySize: "",
+  //   partyLevel: "",
+  // };
 
-  const [formState, setFormState] = useState(initialState);
+  // const [formState, setFormState] = useState(initialState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,14 +53,13 @@ function PartyInput(props) {
         />
 
         <button type="submit">Enter</button>
+
         {submitted ? (
           <div className="party-info-submitted">
             <p>Your party size has been saved as {formState.partySize}</p>
             <p> Your average level has been saved as {formState.partyLevel}</p>
           </div>
-        ) : (
-          <p></p>
-        )}
+        ) : null}
       </form>
     </main>
   );
