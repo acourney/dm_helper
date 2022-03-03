@@ -47,6 +47,20 @@ function GenerateNPCRandomly(props) {
       });
   }, []);
 
+  function handleClick() {
+    Promise.all([
+      fetch(raceURL).then((res) => res.json()),
+      fetch(classURL).then((res) => res.json()),
+    ])
+      .then((data) => {
+        setNpcInfo(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function randomize(arr) {
     if (arr.length > 0) {
       const arrLength = arr.length;
@@ -91,6 +105,7 @@ function GenerateNPCRandomly(props) {
               ].name
             }
           </p>
+          <button onClick={handleClick}>Generate New NPC</button>
         </div>
       )}
     </main>
