@@ -69,15 +69,27 @@ function GenerateNPCRandomly(props) {
           <p>
             <span>Race: </span>
 
-            {npcInfo[0].results[0].name}
+            {
+              npcInfo[0].results[
+                Math.floor(Math.random() * npcInfo[0].results.length)
+              ].name
+            }
           </p>
           <p>
             <span>Languages: </span>
-            {npcInfo[0].results[0].languages}
+            {
+              npcInfo[0].results[
+                Math.floor(Math.random() * npcInfo[0].results.length)
+              ].languages
+            }
           </p>
           <p>
             <span>Class: </span>
-            {npcInfo[1].results[0].name}
+            {
+              npcInfo[1].results[
+                Math.floor(Math.random() * npcInfo[1].results.length)
+              ].name
+            }
           </p>
         </div>
       )}
