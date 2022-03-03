@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+## Project Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My site is called DM Helper. It's designed to help dungeon masters
+create randomized NPCs and monsters quickly and effortlessly so they can focus
+on the bigger details of their campaign.
 
-## Available Scripts
+This will pull from the dungeons and dragons API to generate NPCs with randomized races, classes, levels, spells, and items.
 
-In the project directory, you can run:
+In the future, I'd like to add more details like names to NPCs and Monsters and
+add options to generate templates for maps and rooms.
 
-### `npm start`
+## Link to the API you plan to use
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The link to fetch data:
+https://api.open5e.com/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The link to the API documentation:
+https://open5e.com/api-docs
 
-### `npm test`
+## Example data response you plan to use
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const DND_CLASS_URL = "https://api.open5e.com/classes/";
 
-### `npm run build`
+fetch(DND_CLASS_URL)
+.then((res) => res.json())
+.then((data) => {
+console.log(data);
+// pick a specific class
+console.log(data.results[5].name);
+// pick a random class
+const random_index = Math.floor(Math.random() \* data.count);
+console.log(data.results[random_index].name);
+})
+.catch((err) => console.error(`Oops, something went wrong: ${err}`));
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Visual of your component hierarchy
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![project1 DM helper wireframe](https://media.git.generalassemb.ly/user/41109/files/1ac20380-9a26-11ec-9cf8-e33f03076946)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Wire Frames
 
-### `npm run eject`
+Each page will have a vertical nav bar on the left of the page and a header containing the page's name and site logo.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The home page will contain details about the site.
+![project1 DM helper wireframe (1)](https://media.git.generalassemb.ly/user/41109/files/ea7c6400-9a29-11ec-8acd-72c5ed226394)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The input page will contain an optional form for users to input information about their party.
+![project1 DM helper wireframe (2)](https://media.git.generalassemb.ly/user/41109/files/fc5e0700-9a29-11ec-88e3-e7211d0186c9)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The monster generator page will contain a button that, when clicked, will fetch data about monsters from the dungeons and dragons API to generate a randomized monster.
+![project1 DM helper wireframe (3)](https://media.git.generalassemb.ly/user/41109/files/0f70d700-9a2a-11ec-98a7-6fc38be7bbc0)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The NPC generator page will contain two buttons.
+Clicking one will take you to a page that fetches data from the dungeons and dragons API to generate a completely random NPC.
+Clicking the other button will take you to a page listing all twelve classes in dungeons and dragons so you can generate an NPC of a specific class.
 
-## Learn More
+![project1 DM helper wireframe (4)](https://media.git.generalassemb.ly/user/41109/files/72fb0480-9a2a-11ec-8f51-48f1500dfbef)
+![project1 DM helper wireframe (5)](https://media.git.generalassemb.ly/user/41109/files/7a221280-9a2a-11ec-9b63-f13bfcded5b6)
+![project1 DM helper wireframe (6)](https://media.git.generalassemb.ly/user/41109/files/81492080-9a2a-11ec-9771-e431f5a7313b)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## User Stories
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- As a user, I'd like to be able to generate completely random NPCs and Monsters to save time in planning characters for campaigns
+- As a user, I'd like to be able to choose a class for my NPC to have some more specificity in what is generated
+- As a user, I'd like to input details about my party to generate a monster with a difficulty rating more tailored to my party's levels
+- As a user, I'd like inputting my party's information to be optional so I can generate a completely random monster with a randomized difficulty rating
+- As a user I'd like to be able to navigate to different pages to input my information, generate NPCs, and generate monsters so the site can be more organized
 
-### Code Splitting
+### MVP Goals
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- pull from the Dungeons and Dragons api to get information about races, classes, spells, and items to generate random NPCs
+- store a user's party information to keep their average party level and their party size in state
+- use the user's party information to generate a monster with a difficulty rating within the range of the party's ability to defeat it
 
-### Analyzing the Bundle Size
+### Stretch Goals
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- add more options for the NPC that determine how much detail to give them, for example:
+  1. throwaway NPC 2. recurring NPC 3. integral NPC
+- Also pull from a random name generator API to be able to make names for the generated NPCs and Monsters
+- Add a page to generate randomized maps for users
