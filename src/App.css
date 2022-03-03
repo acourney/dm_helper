@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: Verdana, Tahoma, sans-serif;
 }
 
 body {
@@ -27,7 +28,7 @@ nav {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -82,4 +83,16 @@ form {
   justify-content: center;
   align-items: center;
   gap: 7px;
+}
+
+.randomized-npc-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.randomized-npc-info span {
+  color: navy;
+  font-weight: bolder;
 }
