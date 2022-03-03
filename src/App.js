@@ -11,6 +11,7 @@ import MonsterGenerator from "./components/MonsterGenerator/MonsterGenerator";
 import Home from "./components/Home/Home";
 import GenerateNPCByClass from "./components/GenerateNPCByClass/GenerateNPCByClass";
 import GenerateNPCRandomly from "./components/GenerateNPCRandomly/GenerateNPCRandomly";
+import SpecificClassNPC from "./components/GenerateNPCByClass/SpecificClassNPC";
 
 function App() {
   const initialState = {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/npc-options" element={<NPCGeneratorButtons />} />
             <Route path="/class-list" element={<GenerateNPCByClass />} />
             <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
+            <Route path={`/generate-:class`} element={<SpecificClassNPC />} />
           </Routes>
         </DataContext.Provider>
       </div>
