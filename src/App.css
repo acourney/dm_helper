@@ -48,6 +48,13 @@ header {
   grid-row: 2 / span 3;
 }
 
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 main {
   margin: 0 auto;
 
