@@ -21,13 +21,13 @@ function App() {
 
   const [formState, setFormState] = useState(initialState);
 
-  const [navVisible, setNavVisible] = useState(false);
+  // const [navVisible, setNavVisible] = useState(false);
 
   const [npcNavOptionsVisible, setNpcNavOptionsVisible] = useState(false);
 
-  function toggleNav() {
-    setNavVisible(!navVisible);
-  }
+  // function toggleNav() {
+  //   setNavVisible(!navVisible);
+  // }
 
   function toggleNpcNavOptionsVisible() {
     setNpcNavOptionsVisible(!npcNavOptionsVisible);
@@ -35,16 +35,14 @@ function App() {
 
   function resetNavView() {
     setNpcNavOptionsVisible(false);
-    setNavVisible(false);
+    // setNavVisible(false);
   }
 
   return (
     <div className="App">
       <header>
         <span className="header-menu">
-          <p id="menu" onClick={toggleNav}>
-            &#9776;
-          </p>
+          {/* <p id="menu">&#9776;</p> */}
           <Link to="/">
             <img
               id="dm-helper-logo"
@@ -54,7 +52,7 @@ function App() {
           </Link>
         </span>
       </header>
-      <div className="empty-header-container">
+      {/* <div className="empty-header-container">
         <Link to="/">
           <img
             id="dm-helper-logo-small-screen"
@@ -62,8 +60,16 @@ function App() {
             alt="DM Helper Logo"
           />
         </Link>
-      </div>
-      {navVisible ? (
+      </div> */}
+      <nav id="main-nav">
+        <Link to="/">Home</Link>
+        <Link to="/input">Input</Link>
+        <Link to="/monster-generator">Generate Monsters</Link>
+        <p onClick={toggleNpcNavOptionsVisible} id="expandable-npc-options">
+          Generate NPCs
+        </p>
+      </nav>
+      {/* {navVisible ? (
         <nav id="main-nav">
           <Link to="/">Home</Link>
           <Link to="/input">Input</Link>
@@ -72,7 +78,7 @@ function App() {
             Generate NPCs
           </p>
         </nav>
-      ) : null}
+      ) : null} */}
       {npcNavOptionsVisible ? (
         <nav className="npc-options-nav">
           <Link onClick={resetNavView} to="/class-list">
