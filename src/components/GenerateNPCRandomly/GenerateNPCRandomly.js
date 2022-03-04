@@ -16,22 +16,132 @@ function GenerateNPCRandomly(props) {
 
   // hardcoded name data for now, will eventually separate by race:
   // names from https://www.fantasynamegenerators.com/
-  const names = [
-    "Nhisher Dakol",
-    "Jarem Dhahra",
-    "Brukvirn Heavysword",
-    "Tekvulm Havenbinder",
-    "Glibel Sig",
-    "Gor Kirkuz",
-    "Rorcam Sunwood",
-    "Ron Evenstone",
-    "Mam-Ziohputh Rezdanzuld",
-    "Fen Gernuve",
-    "Shia Chin",
-    "Mium Siaom",
-    "Frabrainrear Burguhu",
-    "Frilbu Rirgoci",
-  ];
+  const names = {
+    Dwarf: [
+      "Thogron Blackkind",
+      "Murrik Everbottom",
+      "Grilkyl Hammerward",
+      "Tydohr Ironfury",
+      "Kramrim Boulderhand",
+      "Bharmund Strelleger",
+      "Ranbelle Mertherk",
+      "Anla Brodikohk",
+      "Bonnmura Lezzug",
+      "Nesgwyn Drothgavun",
+    ],
+    Elf: [
+      "Sarquinal Embermoon",
+      "Elgolor Stonemoon",
+      "Qimaris Wildmight",
+      "Aeydark Azurefond",
+      "Miralamin Elmhold",
+      "Elanorin Gilphelestrol",
+      "Sargolor Drexestrithri",
+      "Zinnorin Quunnixo",
+    ],
+    Halfling: [
+      "Uriwrick Mildhill",
+      "Sanwan Marblegrove",
+      "Golan Teatop",
+      "Laras Brushbrace",
+      "Quinnan Longwhistle",
+      "Diacaryn Grandbrand",
+      "Lidwyse Cloudfound",
+      "Dialyse Greatcheeks",
+      "Vertina Fatspirit",
+      "Thergwen Grasscreek",
+    ],
+    Human: [
+      "Nhisher Dakol",
+      "Jarem Dhahra",
+      "Brukvirn Heavysword",
+      "Christofor",
+      "Donatien",
+      "Gor Kirkuz",
+      "Abelard",
+      "Manolito",
+      "Marquisha",
+      "Malina",
+      "Simonetta",
+      "Rorcam Sunwood",
+      "Ron Evenstone",
+      "Chi Grivridz",
+      "Fen Gernuve",
+      "Shia Chin",
+      "Mium Siaom",
+      "Nothi Votsk",
+      "Tia Siaom",
+    ],
+    Dragonborn: [
+      "Merthinthenad Zraghull",
+      "Numbuun Dozire",
+      "Kiathtolurruar Xarkax",
+      "Yethtusad Faerdorim",
+      "Terthorid Bacrath",
+      "Klelkaasamek Fenvys",
+      "Oldacujan Valyassa",
+      "Elxirejuth Lilodrish",
+      "Myixikmir Narith",
+      "Klemphad Wrathyra",
+    ],
+    Gnome: [
+      "Arixim Bellowtop",
+      "Yeben Babblebottom",
+      "Sadon Lastwander",
+      "Almin Lightcollar",
+      "Ianziver Strongligt",
+      "Isoqaryn Thunderstamp",
+      "Myna Pappin",
+      "Zinmila Uffonimp",
+      "Daphitina Damblesamble",
+      "Reqys Pigglena",
+      "Myza Nepplebapple",
+    ],
+    "Half-Elf": [
+      "Vicros",
+      "Yortorin",
+      "Iloril",
+      "Pangotin",
+      "Jamtumil",
+      "Zylfinas",
+      "Woltrana",
+      "Faeqwyn",
+      "Carhana",
+      "Yllmythe",
+    ],
+    "Half-Orc": [
+      "Komodurk",
+      "Oguask",
+      "Trukenars",
+      "Marubash",
+      "Ororim",
+      "Kani",
+      "Gijenur",
+      "Olomi",
+      "Kirasha",
+      "Rahkagh",
+      "Gynane",
+    ],
+    Tielfling: [
+      "Ebakas",
+      "Kyron",
+      "Zorlius",
+      "Thyira",
+      "Ervir",
+      "Aetcis",
+      "Zevine",
+      "Velrali",
+      "Yusolis",
+      "Shauphis",
+      "Debauchery",
+      "Timeless",
+      "Mystery",
+      "Extreme",
+      "Song",
+      "Suffering",
+      "Expertise",
+    ],
+  };
 
   useEffect(() => {
     Promise.all([
@@ -72,14 +182,25 @@ function GenerateNPCRandomly(props) {
   return (
     <main className="randomized-npc-info">
       <p>Hello from GenerateNPCRandomly</p>
-      <p>
-        <span>Name: </span>
-        {names[randomize(names)]}
-      </p>
+
       {isLoading ? (
         <p>Generating Info...</p>
       ) : (
         <div className="displayNPCInfo">
+          <p>
+            <span>Name: </span>
+            {
+              names[
+                npcInfo[0].results[
+                  Math.floor(Math.random() * npcInfo[0].results.length)
+                ].name
+              ][
+                npcInfo[0].results[
+                  Math.floor(Math.random() * npcInfo[0].results.length)
+                ].name.length
+              ]
+            }
+          </p>
           <p>
             <span>Race: </span>
 
