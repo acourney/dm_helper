@@ -33,6 +33,11 @@ function App() {
     setNpcNavOptionsVisible(!npcNavOptionsVisible);
   }
 
+  function resetNavView() {
+    setNpcNavOptionsVisible(false);
+    setNavVisible(false);
+  }
+
   return (
     <div className="App">
       <header>
@@ -62,8 +67,12 @@ function App() {
       ) : null}
       {npcNavOptionsVisible ? (
         <nav className="npc-options-nav">
-          <Link to="/class-list">Go to Class List</Link>
-          <Link to="/npc-randomizer">Completely Randomize my NPC</Link>
+          <Link onClick={resetNavView} to="/class-list">
+            Go to Class List
+          </Link>
+          <Link onClick={resetNavView} to="/npc-randomizer">
+            Completely Randomize my NPC
+          </Link>
         </nav>
       ) : null}
 

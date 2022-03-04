@@ -8,10 +8,10 @@ function NPCGeneratorButtons(props) {
       buttons below:
       <div className="button-container">
         <Link to="/class-list">
-          <button>Go to Class List</button>
+          <p>Choose NPC Class</p>
         </Link>
         <Link to="/npc-randomizer">
-          <button>Completely Randomize my NPC</button>
+          <p>Generate Completely Random NPC</p>
         </Link>
       </div>
     </main>

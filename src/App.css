@@ -137,3 +137,32 @@ form {
   justify-content: center;
   align-items: center;
 }
+
+.main-card-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.npcClassCards {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  padding: 1rem;
+  width: 70vw;
+
+  gap: 15px;
+}
+
+.card {
+  width: 200px;
+  height: 350px;
+  border: 2px solid black;
+  border-radius: 7px;
+}
+
+#class-image {
+  width: 100%;
+}
