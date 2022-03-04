@@ -21,8 +21,10 @@ function App() {
 
   const [formState, setFormState] = useState(initialState);
 
-  function toggleNav(event) {
-    console.log("you clicked the menu bar");
+  const [navVisible, setNavVisible] = useState(false);
+
+  function toggleNav() {
+    setNavVisible(!navVisible);
   }
 
   return (
@@ -42,12 +44,14 @@ function App() {
           </p>
         </span>
       </header>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/input">Input</Link>
-        <Link to="/monster-generator">Generate Monsters</Link>
-        <Link to="/npc-options">Generate NPCs</Link>
-      </nav>
+      {navVisible ? (
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/input">Input</Link>
+          <Link to="/monster-generator">Generate Monsters</Link>
+          <Link to="/npc-options">Generate NPCs</Link>
+        </nav>
+      ) : null}
 
       <div className="routes">
         <DataContext.Provider value={{ formState, setFormState }}>
