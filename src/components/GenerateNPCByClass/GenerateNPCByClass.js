@@ -6,8 +6,20 @@ function GenerateNPCByClass(props) {
   const [npcClasses, setNpcClasses] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+  // images from dndbeyond.com
   const images = {
-    monk: "https://imgur.com/Cw3ArFM.png",
+    Barbarian: "https://imgur.com/yUzipDO.png",
+    Bard: "https://imgur.com/Z3eGzsZ.png",
+    Cleric: "https://imgur.com/ZcnoYHC.png",
+    Druid: "https://imgur.com/RKiYOwC.png",
+    Fighter: "https://imgur.com/Wir5NjJ.png",
+    Monk: "https://imgur.com/Cw3ArFM.png",
+    Paladin: "https://imgur.com/FGorsUq.png",
+    Ranger: "https://imgur.com/VPYiHag.png",
+    Rogue: "https://imgur.com/FvTH3Mt.png",
+    Sorcerer: "https://imgur.com/LKVRYmN.png",
+    Warlock: "https://imgur.com/NtZYCdY.png",
+    Wizard: "https://imgur.com/o7zFMtk.png",
   };
 
   const URL = "https://api.open5e.com/classes/";
@@ -33,7 +45,11 @@ function GenerateNPCByClass(props) {
             <Link to={`/generate-${npcClass.name}`} key={index}>
               <div className="card">
                 <div className="card-image">
-                  <img id="class-image" src={images.monk} alt="" />
+                  <img
+                    id="class-image"
+                    src={images[`${npcClass.name}`]}
+                    alt=""
+                  />
                 </div>
                 <div className="card-title">
                   <h3>{npcClass.name}</h3>
