@@ -1,3 +1,16 @@
+:root {
+  /* main color palette */
+  --background: #e9d8a6;
+  --header-bg: #005f73;
+  --card-bg: #005f73;
+  --body-text: #001219;
+  --menu-text: whitesmoke;
+  --bold-text: #0a9396;
+  --class-titles: #ca6702;
+  --class-borders: #94d2bd;
+  --buttons: #9b2226;
+}
+
 * {
   box-sizing: border-box;
   font-family: Verdana, Tahoma, sans-serif;
@@ -5,10 +18,13 @@
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--menu-text);
 }
 
 body {
+  background-color: var(--background);
+  color: var(--body-text);
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,11 +38,12 @@ body {
   display: grid;
 
   grid-template-columns: 1fr 2fr 2fr 2fr;
-  grid-template-rows: 1fr 2fr 2fr 2fr;
+  grid-template-rows: 1fr 6fr 6fr 6fr;
 }
 
 #main-nav {
-  border: 2px solid black;
+  background-color: var(--header-bg);
+  color: var(--menu-text);
 
   grid-row: 2 / span 3;
   grid-column: 1 / span 1;
@@ -42,7 +59,9 @@ body {
 }
 
 .npc-options-nav {
-  border: 2px solid black;
+  background-color: var(--header-bg);
+  color: var(--menu-text);
+  border-left: 1px solid var(--menu-text);
 
   grid-row: 4 / span 1;
   grid-column: 2 / span 1;
@@ -56,13 +75,32 @@ body {
 }
 
 header {
-  border: 2px solid black;
+  background-color: var(--header-bg);
+  color: var(--menu-text);
+  border-bottom: 1px solid var(--menu-text);
   display: flex;
   flex-direction: column;
 }
 
+.empty-header-container {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--menu-text);
+
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 3;
+}
+
 #dm-helper-logo {
   width: 100%;
+}
+
+#dm-helper-logo-small-screen {
+  display: none;
+}
+
+#menu {
+  text-align: left;
+  margin-left: 1rem;
 }
 
 #menu:hover {
@@ -102,6 +140,16 @@ form {
   align-items: center;
 }
 
+button {
+  background-color: var(--buttons);
+  color: var(--menu-text);
+
+  border-radius: 7px;
+  border: 1px solid var(--menu-text);
+
+  line-height: 2;
+}
+
 .generator-buttons {
   width: 70%;
   display: flex;
@@ -126,8 +174,9 @@ form {
 }
 
 .randomized-npc-info span,
-.monster-generator span {
-  color: navy;
+.monster-generator span,
+.displayNPCInfo span {
+  color: var(--bold-text);
   font-weight: bolder;
 }
 
@@ -159,8 +208,11 @@ form {
 .card {
   width: 200px;
   height: 350px;
-  border: 2px solid black;
+  border: 2px solid var(--class-borders);
   border-radius: 7px;
+
+  background-color: whitesmoke;
+  color: var(--class-titles);
 
   display: flex;
   flex-direction: column;
@@ -171,4 +223,23 @@ form {
 #class-image {
   max-width: 100%;
   max-height: 275px;
+}
+
+@media only screen and (max-width: 750px) {
+  #dm-helper-logo-small-screen {
+    display: block;
+    margin-right: auto;
+    max-height: 50px;
+    max-width: 100%;
+  }
+  #dm-helper-logo {
+    display: none;
+    height: 50px;
+  }
+  header {
+    height: 50px;
+  }
+  #empty-header-container {
+    height: 50px;
+  }
 }

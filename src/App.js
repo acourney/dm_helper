@@ -42,6 +42,9 @@ function App() {
     <div className="App">
       <header>
         <span className="header-menu">
+          <p id="menu" onClick={toggleNav}>
+            &#9776;
+          </p>
           <Link to="/">
             <img
               id="dm-helper-logo"
@@ -49,12 +52,17 @@ function App() {
               alt="DM Helper Logo"
             />
           </Link>
-
-          <p id="menu" onClick={toggleNav}>
-            &#9776;
-          </p>
         </span>
       </header>
+      <div className="empty-header-container">
+        <Link to="/">
+          <img
+            id="dm-helper-logo-small-screen"
+            src="https://imgur.com/1jnJ7cZ.png"
+            alt="DM Helper Logo"
+          />
+        </Link>
+      </div>
       {navVisible ? (
         <nav id="main-nav">
           <Link to="/">Home</Link>
