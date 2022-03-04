@@ -23,8 +23,14 @@ function App() {
 
   const [navVisible, setNavVisible] = useState(false);
 
+  const [npcNavOptionsVisible, setNpcNavOptionsVisible] = useState(false);
+
   function toggleNav() {
     setNavVisible(!navVisible);
+  }
+
+  function toggleNpcNavOptionsVisible() {
+    setNpcNavOptionsVisible(!npcNavOptionsVisible);
   }
 
   return (
@@ -45,11 +51,19 @@ function App() {
         </span>
       </header>
       {navVisible ? (
-        <nav>
+        <nav id="main-nav">
           <Link to="/">Home</Link>
           <Link to="/input">Input</Link>
           <Link to="/monster-generator">Generate Monsters</Link>
-          <Link to="/npc-options">Generate NPCs</Link>
+          <p id="expandable-npc-options" onClick={toggleNpcNavOptionsVisible}>
+            Generate NPCs
+          </p>
+        </nav>
+      ) : null}
+      {npcNavOptionsVisible ? (
+        <nav className="npc-options-nav">
+          <Link to="/class-list">Go to Class List</Link>
+          <Link to="/npc-randomizer">Completely Randomize my NPC</Link>
         </nav>
       ) : null}
 
@@ -61,7 +75,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" />} />
 
-            <Route path="/npc-options" element={<NPCGeneratorButtons />} />
+            {/* <Route path="/npc-options" element={<NPCGeneratorButtons />} /> */}
             <Route path="/class-list" element={<GenerateNPCByClass />} />
             <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
             <Route
