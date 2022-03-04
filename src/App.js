@@ -21,20 +21,33 @@ function App() {
 
   const [formState, setFormState] = useState(initialState);
 
+  function toggleNav(event) {
+    console.log("you clicked the menu bar");
+  }
+
   return (
     <div className="App">
+      <header>
+        <span className="header-menu">
+          <Link to="/">
+            <img
+              id="dm-helper-logo"
+              src="https://imgur.com/1jnJ7cZ.png"
+              alt="DM Helper Logo"
+            />
+          </Link>
+
+          <p id="menu" onClick={toggleNav}>
+            &#9776;
+          </p>
+        </span>
+      </header>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/input">Input</Link>
         <Link to="/monster-generator">Generate Monsters</Link>
         <Link to="/npc-options">Generate NPCs</Link>
       </nav>
-
-      <header>
-        <h1>
-          <Link to="/">DM Helper</Link>
-        </h1>
-      </header>
 
       <div className="routes">
         <DataContext.Provider value={{ formState, setFormState }}>
