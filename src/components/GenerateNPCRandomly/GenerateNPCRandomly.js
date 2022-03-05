@@ -2,10 +2,17 @@
 // remove  **_Languages._** from language data
 // for some reason, data is fetched three times on mount?
 
+import { faCropSimple } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 
 function GenerateNPCRandomly(props) {
+  let randRaceIndex = 0;
+  let randClassIndex = 0;
+
   const [npcInfo, setNpcInfo] = useState([]);
+  const [randomRace, setRandomRace] = useState({});
+  const [randomClass, setRandomClass] = useState({});
+
   const [isLoading, setLoading] = useState(true);
 
   const raceURL = "https://api.open5e.com/races/";
@@ -171,60 +178,45 @@ function GenerateNPCRandomly(props) {
       });
   }
 
-  function randomize(arr) {
-    if (arr.length > 0) {
-      const arrLength = arr.length;
-      const random_index = Math.floor(Math.random() * arrLength);
-      return random_index;
+  useEffect(() => {
+    if (!isLoading) {
+      randRaceIndex = Math.floor(Math.random() * npcInfo[0].results.length);
+      setRandomRace(npcInfo[0].results[randRaceIndex]);
     }
-  }
+  }, [[], npcInfo]);
+
+  // function randomize(arr) {
+  //   if (arr.length > 0) {
+  //     const arrLength = arr.length;
+  //     const random_index = Math.floor(Math.random() * arrLength);
+  //     return random_index;
+  //   }
+  // }
 
   return (
     <main className="randomized-npc-info">
-      <p>Hello from GenerateNPCRandomly</p>
-
-      {isLoading ? (
-        <p>Generating Info...</p>
+      {isLoading && randomRace.name ? (
+        <>
+          <p>Generating Info...</p>
+        </>
       ) : (
         <div className="displayNPCInfo">
           <p>
             <span>Name: </span>
-            {
-              names[
-                npcInfo[0].results[
-                  Math.floor(Math.random() * npcInfo[0].results.length)
-                ].name
-              ][
-                npcInfo[0].results[
-                  Math.floor(Math.random() * npcInfo[0].results.length)
-                ].name.length
-              ]
-            }
+            {}
           </p>
           <p>
             <span>Race: </span>
 
-            {
-              npcInfo[0].results[
-                Math.floor(Math.random() * npcInfo[0].results.length)
-              ].name
-            }
+            {randomRace.name}
           </p>
           <p>
             <span>Languages: </span>
-            {
-              npcInfo[0].results[
-                Math.floor(Math.random() * npcInfo[0].results.length)
-              ].languages
-            }
+            {randomRace.languages}
           </p>
           <p>
             <span>Class: </span>
-            {
-              npcInfo[1].results[
-                Math.floor(Math.random() * npcInfo[1].results.length)
-              ].name
-            }
+            {}
           </p>
           <button onClick={handleClick}>Generate New NPC</button>
         </div>
