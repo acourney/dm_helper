@@ -8,6 +8,7 @@ function SpecificClassNPC(props) {
   const { npcClass } = useParams();
   const [npcInfo, setNpcInfo] = useState([]);
   const [randomRace, setRandomRace] = useState({});
+  const [language, setLanguage] = useState("");
 
   const [isLoading, setLoading] = useState(true);
 
@@ -208,6 +209,16 @@ function SpecificClassNPC(props) {
     }
   }
 
+  useEffect(() => {
+    if (isLoading === false) {
+      const editedLanguage = randomRace.languages.substring(
+        17,
+        randomRace.languages.length
+      );
+      setLanguage(editedLanguage);
+    }
+  }, [randomRace]);
+
   return (
     <main>
       {isLoading ? (
@@ -224,7 +235,7 @@ function SpecificClassNPC(props) {
           </p>
           <p>
             <span>Languages: </span>
-            {randomRace.languages}
+            {language}
           </p>
           <p>
             <span>Class: </span>
