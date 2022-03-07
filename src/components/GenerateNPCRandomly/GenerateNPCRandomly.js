@@ -165,33 +165,24 @@ function GenerateNPCRandomly(props) {
   }, []);
 
   function handleClick() {
-    Promise.all([
-      fetch(raceURL).then((res) => res.json()),
-      fetch(classURL).then((res) => res.json()),
-    ])
-      .then((data) => {
-        setNpcInfo(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log("you clicked generate new npc button");
+
+    if (!isLoading) {
+      randRaceIndex = Math.floor(Math.random() * npcInfo[0].results.length);
+      randClassIndex = Math.floor(Math.random() * npcInfo[1].results.length);
+      setRandomRace(npcInfo[0].results[randRaceIndex]);
+      setRandomClass(npcInfo[1].results[randClassIndex]);
+    }
   }
 
   useEffect(() => {
     if (!isLoading) {
       randRaceIndex = Math.floor(Math.random() * npcInfo[0].results.length);
+      randClassIndex = Math.floor(Math.random() * npcInfo[1].results.length);
       setRandomRace(npcInfo[0].results[randRaceIndex]);
+      setRandomClass(npcInfo[1].results[randClassIndex]);
     }
-  }, [[], npcInfo]);
-
-  // function randomize(arr) {
-  //   if (arr.length > 0) {
-  //     const arrLength = arr.length;
-  //     const random_index = Math.floor(Math.random() * arrLength);
-  //     return random_index;
-  //   }
-  // }
+  }, [isLoading]);
 
   return (
     <main className="randomized-npc-info">
@@ -203,7 +194,13 @@ function GenerateNPCRandomly(props) {
         <div className="displayNPCInfo">
           <p>
             <span>Name: </span>
+            {
+              // names[randomRace.name][
+              //   Math.floor(Math.random() * names[randomRace.name].length)
+              // ]
+            }
             {}
+            {console.log()}
           </p>
           <p>
             <span>Race: </span>
@@ -216,9 +213,11 @@ function GenerateNPCRandomly(props) {
           </p>
           <p>
             <span>Class: </span>
-            {}
+            {randomClass.name}
           </p>
-          <button onClick={handleClick}>Generate New NPC</button>
+          <button id="generate-random-npc-button" onClick={handleClick}>
+            Generate New NPC
+          </button>
         </div>
       )}
     </main>
