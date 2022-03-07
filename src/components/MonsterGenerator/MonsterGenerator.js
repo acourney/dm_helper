@@ -7,6 +7,7 @@ function MonsterGenerator(props) {
 
   const [monsterData, setMonsterData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [randomMonster, setRandomMonster] = useState({});
 
   const challenge_rating = formState.partyLevel;
   let URL = "";
@@ -44,39 +45,39 @@ function MonsterGenerator(props) {
     console.log("you requested a new monster");
   }
 
+  useEffect(() => {
+    if (isLoading === false) {
+      let randomMonster =
+        monsterData.results[
+          Math.floor(Math.random() * monsterData.results.length)
+        ];
+      setRandomMonster(randomMonster);
+    }
+  }, [isLoading]);
+
   return (
     <main className="monster-generator">
-      <p>Hello from MonsterGenerator</p>
       {isLoading ? (
         <p>Generating Info...</p>
       ) : (
         <div className="displayNPCInfo">
           <p>
             <span>Monster Type: </span>
-            {
-              monsterData.results[
-                Math.floor(Math.random() * monsterData.results.length)
-              ].name
-            }
+            {randomMonster.name}
           </p>
           <p>
             <span>Challenge Rating: </span>
-            {
-              monsterData.results[
-                Math.floor(Math.random() * monsterData.results.length)
-              ].challenge_rating
-            }
+            {randomMonster["challenge_rating"]}
           </p>
           <p>
             <span>HP: </span>
-            {
-              monsterData.results[
-                Math.floor(Math.random() * monsterData.results.length)
-              ].hit_points
-            }
+            {randomMonster["hit_points"]}
           </p>
           <p>
             <span>Abilities: </span>
+            {/* {randomMonster["special_abilities"].forEach((ability) => {
+              console.log(ability.desc);
+            })} */}
           </p>
           <button onClick={handleClick}>Generate New Monster</button>
         </div>
