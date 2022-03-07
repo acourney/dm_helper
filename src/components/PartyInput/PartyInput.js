@@ -14,17 +14,9 @@ function PartyInput(props) {
     return setSubmitted(true);
   }
 
-  // const initialState = {
-  //   partySize: "",
-  //   partyLevel: "",
-  // };
-
-  // const [formState, setFormState] = useState(initialState);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     toggleSubmitted();
-    console.log(submitted);
   };
 
   const handleChange = (event) => {

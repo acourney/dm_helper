@@ -28,9 +28,7 @@ function GenerateNPCByClass(props) {
       .then((res) => res.json())
       .then((data) => {
         setNpcClasses(data);
-        console.log(data);
         setLoading(false);
-        // console.log(raceData.results);
       })
       .catch((err) => console.error(`Oops, something went wrong: ${err}`));
   }, []);

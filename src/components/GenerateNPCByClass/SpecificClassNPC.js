@@ -148,7 +148,6 @@ function SpecificClassNPC(props) {
     ])
       .then((data) => {
         setNpcInfo(data);
-        console.log(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -157,8 +156,6 @@ function SpecificClassNPC(props) {
   }, []);
 
   function handleClick() {
-    console.log("you clicked generate new npc button");
-
     if (isLoading === false) {
       randRaceIndex = Math.floor(Math.random() * npcInfo[0].results.length);
       setRandomRace(npcInfo[0].results[randRaceIndex]);

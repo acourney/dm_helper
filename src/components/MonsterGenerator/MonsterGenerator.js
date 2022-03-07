@@ -18,23 +18,17 @@ function MonsterGenerator(props) {
     ? (URL = `https://api.open5e.com/monsters/?challenge_rating=${challenge_rating}`)
     : (URL = `https://api.open5e.com/monsters/?page=${randomPage}`);
 
-  console.log(URL);
-
   useEffect(() => {
     fetch(URL)
       .then((res) => res.json())
       .then((data) => {
         setMonsterData(data);
-        console.log(data);
         setLoading(false);
-        // console.log(raceData.results);
       })
       .catch((err) => console.error(`Oops, something went wrong: ${err}`));
   }, []);
 
   function handleClick() {
-    console.log("you requested a new monster");
-
     if (isLoading === false) {
       let randomMonster =
         monsterData.results[

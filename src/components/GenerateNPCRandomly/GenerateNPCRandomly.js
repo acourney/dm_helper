@@ -2,7 +2,6 @@
 // remove  **_Languages._** from language data
 // for some reason, data is fetched three times on mount?
 
-import { faCropSimple } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { matchRoutes } from "react-router-dom";
 
@@ -166,8 +165,6 @@ function GenerateNPCRandomly(props) {
   }, []);
 
   function handleClick() {
-    console.log("you clicked generate new npc button");
-
     if (isLoading === false) {
       randRaceIndex = Math.floor(Math.random() * npcInfo[0].results.length);
       randClassIndex = Math.floor(Math.random() * npcInfo[1].results.length);
@@ -231,23 +228,6 @@ function GenerateNPCRandomly(props) {
           <p>
             <span>Name: </span>
             {chooseName(randomRace.name)}
-            {/* {
-                names[randomRace.name][
-                  Math.floor(Math.random() * names[randomRace.name].length)
-                ]
-              } */}
-            {/* {console.log(names[randomRace.name].length > 0)} */}
-            {/* {console.log(
-                names["Dragonborn"][
-                  Math.floor(Math.random() * names["Dragonborn"].length)
-                ]
-              )}
-              {console.log(names[randomRace.name])}
-              {console.log(
-                names[randomRace.name][
-                  Math.floor(Math.random() * names[randomRace.name].length)
-                ]
-              )} */}
           </p>
           <p>
             <span>Race: </span>
