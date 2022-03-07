@@ -13,6 +13,7 @@ function GenerateNPCRandomly(props) {
   const [randomRace, setRandomRace] = useState({});
   const [language, setLanguage] = useState("");
   const [randomClass, setRandomClass] = useState({});
+  const [skills, setSkills] = useState("");
 
   const [isLoading, setLoading] = useState(true);
 
@@ -227,6 +228,14 @@ function GenerateNPCRandomly(props) {
 
   useEffect(() => {
     if (isLoading === false) {
+      const npcSkill = randomClass["prof_skills"];
+
+      setSkills(npcSkill);
+    }
+  }, [randomClass]);
+
+  useEffect(() => {
+    if (isLoading === false) {
       const editedLanguage = randomRace.languages.substring(
         17,
         randomRace.languages.length
@@ -252,14 +261,14 @@ function GenerateNPCRandomly(props) {
             <span>Languages: </span>
 
             {language}
-            {/* {removeSubstring(randomRace.languages)} */}
-            {/* {console.log(
-              randomRace.languages.substring(17, randomRace.languages.length)
-            )} */}
           </p>
           <p>
             <span>Class: </span>
             {randomClass.name}
+          </p>
+          <p>
+            <span>Skills: </span>
+            {skills}
           </p>
           <button id="generate-random-npc-button" onClick={handleClick}>
             Generate New NPC

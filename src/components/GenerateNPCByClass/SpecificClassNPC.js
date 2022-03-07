@@ -9,6 +9,7 @@ function SpecificClassNPC(props) {
   const [npcInfo, setNpcInfo] = useState([]);
   const [randomRace, setRandomRace] = useState({});
   const [language, setLanguage] = useState("");
+  const [skills, setSkills] = useState("");
 
   const [isLoading, setLoading] = useState(true);
 
@@ -219,6 +220,14 @@ function SpecificClassNPC(props) {
     }
   }, [randomRace]);
 
+  useEffect(() => {
+    if (isLoading === false) {
+      const npcSkill = npcInfo[1].results[0]["prof_skills"];
+
+      setSkills(npcSkill);
+    }
+  }, [isLoading]);
+
   return (
     <main>
       {isLoading ? (
@@ -240,6 +249,10 @@ function SpecificClassNPC(props) {
           <p>
             <span>Class: </span>
             {npcClass}
+          </p>
+          <p>
+            <span>Skills: </span>
+            {skills}
           </p>
           <button onClick={handleClick}>Generate New NPC</button>
         </div>
