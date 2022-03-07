@@ -4,6 +4,7 @@
 
 import { faCropSimple } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
+import { matchRoutes } from "react-router-dom";
 
 function GenerateNPCRandomly(props) {
   let randRaceIndex = 0;
@@ -167,7 +168,7 @@ function GenerateNPCRandomly(props) {
   function handleClick() {
     console.log("you clicked generate new npc button");
 
-    if (!isLoading) {
+    if (isLoading === false) {
       randRaceIndex = Math.floor(Math.random() * npcInfo[0].results.length);
       randClassIndex = Math.floor(Math.random() * npcInfo[1].results.length);
       setRandomRace(npcInfo[0].results[randRaceIndex]);
@@ -176,7 +177,7 @@ function GenerateNPCRandomly(props) {
   }
 
   useEffect(() => {
-    if (!isLoading) {
+    if (isLoading === false) {
       randRaceIndex = Math.floor(Math.random() * npcInfo[0].results.length);
       randClassIndex = Math.floor(Math.random() * npcInfo[1].results.length);
       setRandomRace(npcInfo[0].results[randRaceIndex]);
@@ -184,23 +185,69 @@ function GenerateNPCRandomly(props) {
     }
   }, [isLoading]);
 
+  function chooseName(randomRace) {
+    switch (randomRace) {
+      case "Human":
+        return names["Human"][
+          Math.floor(Math.random() * names["Human"].length)
+        ];
+      case "Dwarf":
+        return names["Dwarf"][
+          Math.floor(Math.random() * names["Dwarf"].length)
+        ];
+      case "Elf":
+        return names["Elf"][Math.floor(Math.random() * names["Elf"].length)];
+      case "Halfling":
+        return names["Halfling"][
+          Math.floor(Math.random() * names["Halfling"].length)
+        ];
+      case "Dragonborn":
+        return names["Dragonborn"][
+          Math.floor(Math.random() * names["Dragonborn"].length)
+        ];
+      case "Gnome":
+        return names["Gnome"][
+          Math.floor(Math.random() * names["Gnome"].length)
+        ];
+      case "Half-Elf":
+        return names["Half-Elf"][
+          Math.floor(Math.random() * names["Half-Elf"].length)
+        ];
+      case "Half-Orc":
+        return names["Half-Orc"][
+          Math.floor(Math.random() * names["Half-Orc"].length)
+        ];
+      case "Tiefling":
+        return names["Tiefling"][
+          Math.floor(Math.random() * names["Tiefling"].length)
+        ];
+    }
+  }
+
   return (
     <main className="randomized-npc-info">
-      {isLoading && randomRace.name ? (
-        <>
-          <p>Generating Info...</p>
-        </>
-      ) : (
+      {isLoading === false ? (
         <div className="displayNPCInfo">
           <p>
             <span>Name: </span>
-            {
-              // names[randomRace.name][
-              //   Math.floor(Math.random() * names[randomRace.name].length)
-              // ]
-            }
-            {}
-            {console.log()}
+            {chooseName(randomRace.name)}
+            {/* {
+                names[randomRace.name][
+                  Math.floor(Math.random() * names[randomRace.name].length)
+                ]
+              } */}
+            {/* {console.log(names[randomRace.name].length > 0)} */}
+            {/* {console.log(
+                names["Dragonborn"][
+                  Math.floor(Math.random() * names["Dragonborn"].length)
+                ]
+              )}
+              {console.log(names[randomRace.name])}
+              {console.log(
+                names[randomRace.name][
+                  Math.floor(Math.random() * names[randomRace.name].length)
+                ]
+              )} */}
           </p>
           <p>
             <span>Race: </span>
@@ -219,6 +266,10 @@ function GenerateNPCRandomly(props) {
             Generate New NPC
           </button>
         </div>
+      ) : (
+        <>
+          <p>Generating Info...</p>
+        </>
       )}
     </main>
   );
