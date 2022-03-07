@@ -33,16 +33,15 @@ function MonsterGenerator(props) {
   }, []);
 
   function handleClick() {
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setMonsterData(data);
-        console.log(data);
-        setLoading(false);
-        // console.log(raceData.results);
-      })
-      .catch((err) => console.error(`Oops, something went wrong: ${err}`));
     console.log("you requested a new monster");
+
+    if (isLoading === false) {
+      let randomMonster =
+        monsterData.results[
+          Math.floor(Math.random() * monsterData.results.length)
+        ];
+      setRandomMonster(randomMonster);
+    }
   }
 
   useEffect(() => {
@@ -57,13 +56,15 @@ function MonsterGenerator(props) {
 
   return (
     <main className="monster-generator">
-      {isLoading ? (
-        <p>Generating Info...</p>
-      ) : (
+      {isLoading === false ? (
         <div className="displayNPCInfo">
           <p>
-            <span>Monster Type: </span>
+            <span>Monster: </span>
             {randomMonster.name}
+          </p>
+          <p>
+            <span>Type: </span>
+            {randomMonster.type}
           </p>
           <p>
             <span>Challenge Rating: </span>
@@ -73,14 +74,19 @@ function MonsterGenerator(props) {
             <span>HP: </span>
             {randomMonster["hit_points"]}
           </p>
+
           <p>
-            <span>Abilities: </span>
-            {/* {randomMonster["special_abilities"].forEach((ability) => {
-              console.log(ability.desc);
-            })} */}
+            <span>Alignment: </span>
+            {randomMonster.alignment}
+          </p>
+          <p>
+            <span>Hit Dice: </span>
+            {randomMonster["hit_dice"]}
           </p>
           <button onClick={handleClick}>Generate New Monster</button>
         </div>
+      ) : (
+        <p>Generating Info...</p>
       )}
     </main>
   );
