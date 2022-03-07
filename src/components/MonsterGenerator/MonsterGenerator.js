@@ -8,6 +8,7 @@ function MonsterGenerator(props) {
   const [monsterData, setMonsterData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [randomMonster, setRandomMonster] = useState({});
+  const [actions, setActions] = useState("");
 
   const challenge_rating = formState.partyLevel;
   let URL = "";
@@ -48,6 +49,17 @@ function MonsterGenerator(props) {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    if (isLoading === false) {
+      const actionArr = [];
+      for (let i = 0; i < randomMonster.actions.length; i++) {
+        actionArr.push(randomMonster.actions[i].name);
+      }
+      const actionString = actionArr.join("\r\n");
+      setActions(actionString);
+    }
+  }, [randomMonster]);
+
   return (
     <main className="monster-generator">
       {isLoading === false ? (
@@ -77,6 +89,18 @@ function MonsterGenerator(props) {
             <span>Hit Dice: </span>
             {randomMonster["hit_dice"]}
           </p>
+          {randomMonster.actions ? (
+            <p>
+              <span>Actions: </span>
+              {actions}
+            </p>
+          ) : (
+            <p>
+              <span>Actions: </span>
+              None
+            </p>
+          )}
+
           <button onClick={handleClick}>Generate New Monster</button>
         </div>
       ) : (
