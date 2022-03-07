@@ -11,6 +11,7 @@ function GenerateNPCRandomly(props) {
 
   const [npcInfo, setNpcInfo] = useState([]);
   const [randomRace, setRandomRace] = useState({});
+  const [language, setLanguage] = useState("");
   const [randomClass, setRandomClass] = useState({});
 
   const [isLoading, setLoading] = useState(true);
@@ -151,6 +152,7 @@ function GenerateNPCRandomly(props) {
   };
 
   useEffect(() => {
+    console.log("LOADING!");
     Promise.all([
       fetch(raceURL).then((res) => res.json()),
       fetch(classURL).then((res) => res.json()),
@@ -183,43 +185,55 @@ function GenerateNPCRandomly(props) {
   }, [isLoading]);
 
   function chooseName(randomRace) {
-    switch (randomRace) {
-      case "Human":
-        return names["Human"][
-          Math.floor(Math.random() * names["Human"].length)
-        ];
-      case "Dwarf":
-        return names["Dwarf"][
-          Math.floor(Math.random() * names["Dwarf"].length)
-        ];
-      case "Elf":
-        return names["Elf"][Math.floor(Math.random() * names["Elf"].length)];
-      case "Halfling":
-        return names["Halfling"][
-          Math.floor(Math.random() * names["Halfling"].length)
-        ];
-      case "Dragonborn":
-        return names["Dragonborn"][
-          Math.floor(Math.random() * names["Dragonborn"].length)
-        ];
-      case "Gnome":
-        return names["Gnome"][
-          Math.floor(Math.random() * names["Gnome"].length)
-        ];
-      case "Half-Elf":
-        return names["Half-Elf"][
-          Math.floor(Math.random() * names["Half-Elf"].length)
-        ];
-      case "Half-Orc":
-        return names["Half-Orc"][
-          Math.floor(Math.random() * names["Half-Orc"].length)
-        ];
-      case "Tiefling":
-        return names["Tiefling"][
-          Math.floor(Math.random() * names["Tiefling"].length)
-        ];
+    if (isLoading === false) {
+      switch (randomRace) {
+        case "Human":
+          return names["Human"][
+            Math.floor(Math.random() * names["Human"].length)
+          ];
+        case "Dwarf":
+          return names["Dwarf"][
+            Math.floor(Math.random() * names["Dwarf"].length)
+          ];
+        case "Elf":
+          return names["Elf"][Math.floor(Math.random() * names["Elf"].length)];
+        case "Halfling":
+          return names["Halfling"][
+            Math.floor(Math.random() * names["Halfling"].length)
+          ];
+        case "Dragonborn":
+          return names["Dragonborn"][
+            Math.floor(Math.random() * names["Dragonborn"].length)
+          ];
+        case "Gnome":
+          return names["Gnome"][
+            Math.floor(Math.random() * names["Gnome"].length)
+          ];
+        case "Half-Elf":
+          return names["Half-Elf"][
+            Math.floor(Math.random() * names["Half-Elf"].length)
+          ];
+        case "Half-Orc":
+          return names["Half-Orc"][
+            Math.floor(Math.random() * names["Half-Orc"].length)
+          ];
+        case "Tiefling":
+          return names["Tiefling"][
+            Math.floor(Math.random() * names["Tiefling"].length)
+          ];
+      }
     }
   }
+
+  useEffect(() => {
+    if (isLoading === false) {
+      const editedLanguage = randomRace.languages.substring(
+        17,
+        randomRace.languages.length
+      );
+      setLanguage(editedLanguage);
+    }
+  }, [randomRace]);
 
   return (
     <main className="randomized-npc-info">
@@ -236,7 +250,12 @@ function GenerateNPCRandomly(props) {
           </p>
           <p>
             <span>Languages: </span>
-            {randomRace.languages}
+
+            {language}
+            {/* {removeSubstring(randomRace.languages)} */}
+            {/* {console.log(
+              randomRace.languages.substring(17, randomRace.languages.length)
+            )} */}
           </p>
           <p>
             <span>Class: </span>
