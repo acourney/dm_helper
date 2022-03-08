@@ -90,7 +90,7 @@ Clicking the other button will take you to a page listing all twelve classes in 
 ### Stretch Goals
 
 - add more options for the NPC that determine how much detail to give them, for example:
-  1. throwaway NPC 2. recurring NPC 3. integral NPC
+  i. throwaway NPC ii. recurring NPC iii. integral NPC
 - Also pull from a random name generator API to be able to make names for the generated NPCs and Monsters
 - Add an encounters tab to save NPCs and Monsters on a page, in order of initiative
 - Add a page to generate randomized maps for users
