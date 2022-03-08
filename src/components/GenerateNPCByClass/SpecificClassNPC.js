@@ -122,7 +122,7 @@ function SpecificClassNPC(props) {
       "Rahkagh",
       "Gynane",
     ],
-    Tielfling: [
+    Tiefling: [
       "Ebakas",
       "Kyron",
       "Zorlius",

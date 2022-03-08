@@ -1,7 +1,3 @@
-// TODO
-// remove  **_Languages._** from language data
-// for some reason, data is fetched three times on mount?
-
 import React, { useEffect, useState } from "react";
 import { matchRoutes } from "react-router-dom";
 
@@ -131,7 +127,7 @@ function GenerateNPCRandomly(props) {
       "Rahkagh",
       "Gynane",
     ],
-    Tielfling: [
+    Tiefling: [
       "Ebakas",
       "Kyron",
       "Zorlius",
