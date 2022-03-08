@@ -5,6 +5,8 @@ import { useState, useContext, useEffect } from "react";
 function MonsterGenerator(props) {
   const { formState, setFormState } = useContext(DataContext);
 
+  const [error, setError] = useState("");
+
   const [monsterData, setMonsterData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [randomMonster, setRandomMonster] = useState({});
@@ -26,7 +28,11 @@ function MonsterGenerator(props) {
         setMonsterData(data);
         setLoading(false);
       })
-      .catch((err) => console.error(`Oops, something went wrong: ${err}`));
+      .catch((err) => {
+        const message =
+          "Oops. Something went wrong, please refresh and try again.";
+        setError(message);
+      });
   }, []);
 
   function handleClick() {
@@ -62,8 +68,9 @@ function MonsterGenerator(props) {
 
   return (
     <main className="monster-generator">
+      {error ? <p>{error}</p> : null}
       {isLoading === false ? (
-        <div className="displayNPCInfo">
+        <div className={error ? "displayNPCInfoError" : "displayNPCInfo"}>
           <p>
             <span>Monster: </span>
             {randomMonster.name}

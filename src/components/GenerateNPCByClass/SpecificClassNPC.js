@@ -6,6 +6,9 @@ function SpecificClassNPC(props) {
   let randRaceIndex = 0;
 
   const { npcClass } = useParams();
+
+  const [error, setError] = useState("");
+
   const [npcInfo, setNpcInfo] = useState([]);
   const [randomRace, setRandomRace] = useState({});
   const [language, setLanguage] = useState("");
@@ -153,7 +156,9 @@ function SpecificClassNPC(props) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        const message =
+          "Oops. Something went wrong, please refresh and try again.";
+        setError(message);
       });
   }, []);
 
@@ -230,10 +235,11 @@ function SpecificClassNPC(props) {
 
   return (
     <main>
+      {error ? <p>{error}</p> : null}
       {isLoading ? (
         <p>Generating Info...</p>
       ) : (
-        <div className="displayNPCInfo">
+        <div className={error ? "displayNPCInfoError" : "displayNPCInfo"}>
           <p>
             <span>Name: </span>
             {chooseName(randomRace.name)}

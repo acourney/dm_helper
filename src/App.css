@@ -213,6 +213,10 @@ button {
   font-weight: bolder;
 }
 
+.displayNPCInfoError {
+  display: none;
+}
+
 .monster-generator {
   display: flex;
   flex-direction: column;

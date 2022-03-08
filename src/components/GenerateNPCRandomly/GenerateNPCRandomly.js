@@ -5,6 +5,8 @@ function GenerateNPCRandomly(props) {
   let randRaceIndex = 0;
   let randClassIndex = 0;
 
+  const [error, setError] = useState("");
+
   const [npcInfo, setNpcInfo] = useState([]);
   const [randomRace, setRandomRace] = useState({});
   const [language, setLanguage] = useState("");
@@ -14,12 +16,9 @@ function GenerateNPCRandomly(props) {
   const [isLoading, setLoading] = useState(true);
 
   const raceURL = "https://api.open5e.com/races/";
-  //languages will be pulled out of the race data
-  const classURL = "https://api.open5e.com/classes/";
-  // weapons proficiency and spellcasting ability comes
-  // from class data
 
-  // hardcoded name data for now, will eventually separate by race:
+  const classURL = "https://api.open5e.com/classes/";
+
   // names from https://www.fantasynamegenerators.com/
   const names = {
     Dwarf: [
@@ -158,7 +157,9 @@ function GenerateNPCRandomly(props) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        const message =
+          "Oops. Something went wrong, please refresh and try again.";
+        setError(message);
       });
   }, []);
 
@@ -241,8 +242,9 @@ function GenerateNPCRandomly(props) {
 
   return (
     <main className="randomized-npc-info">
+      {error ? <p>{error}</p> : null}
       {isLoading === false ? (
-        <div className="displayNPCInfo">
+        <div className={error ? "displayNPCInfoError" : "displayNPCInfo"}>
           <p>
             <span>Name: </span>
             {chooseName(randomRace.name)}
