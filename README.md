@@ -95,3 +95,4 @@ Clicking the other button will take you to a page listing all twelve classes in 
 - Also pull from a random name generator API to be able to make names for the generated NPCs and Monsters
 - Add an encounters tab to save NPCs and Monsters on a page, in order of initiative
 - Add a page to generate randomized maps for users
+- Add a page to generate monsters by monster type, similar to the option to generate NPC by class
