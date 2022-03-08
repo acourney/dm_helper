@@ -163,6 +163,16 @@ form {
   align-items: center;
 }
 
+#input-info-span {
+  color: var(--bold-text);
+  font-weight: bolder;
+}
+
+.user-party-form p {
+  width: 40vw;
+  margin-bottom: 25px;
+}
+
 button {
   background-color: var(--buttons);
   color: var(--button-text);

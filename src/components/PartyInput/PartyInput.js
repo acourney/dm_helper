@@ -1,6 +1,5 @@
 // TODO
-// Clear input fields on submission without clearing state
-// submitted only gets toggled when the button is clicked twice
+// add info box that this affects monster challenge rating
 import React from "react";
 import { DataContext } from "../../dataContext";
 import { useState, useContext } from "react";
@@ -26,6 +25,12 @@ function PartyInput(props) {
   return (
     <main className="user-party-form">
       <form onSubmit={handleSubmit}>
+        <p>
+          <span id="input-info-span">
+            Add some information about your party to get a monster with a
+            specific challenge rating:
+          </span>
+        </p>
         <label htmlFor="partySize">Input the size of your party:</label>
         <input
           id="partySize"
