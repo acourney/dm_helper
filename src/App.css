@@ -25,11 +25,16 @@ a {
 body {
   background-color: var(--background);
   background-image: url("https://imgur.com/aTYPD2b.jpeg");
+  background-size: cover;
   color: var(--body-text);
 
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+h2 {
+  color: var(--class-titles);
 }
 
 .App {
@@ -101,6 +106,7 @@ header {
 #dm-helper-logo {
   height: 100px;
   max-width: 100%;
+  padding: 10px;
 
   margin: 0 auto;
 }
@@ -244,10 +250,20 @@ button {
   max-height: 275px;
 }
 
+#generate-random-npc-button {
+  z-index: 5000;
+}
+
 @media only screen and (max-width: 750px) {
   a,
   p {
     font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  body {
+    background-size: auto;
   }
 }
 

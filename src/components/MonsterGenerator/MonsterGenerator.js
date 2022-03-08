@@ -55,7 +55,7 @@ function MonsterGenerator(props) {
       for (let i = 0; i < randomMonster.actions.length; i++) {
         actionArr.push(randomMonster.actions[i].name);
       }
-      const actionString = actionArr.join("\r\n");
+      const actionString = actionArr.join(", ");
       setActions(actionString);
     }
   }, [randomMonster]);

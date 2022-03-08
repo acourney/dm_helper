@@ -153,7 +153,6 @@ function GenerateNPCRandomly(props) {
   };
 
   useEffect(() => {
-    console.log("LOADING!");
     Promise.all([
       fetch(raceURL).then((res) => res.json()),
       fetch(classURL).then((res) => res.json()),
@@ -220,7 +219,7 @@ function GenerateNPCRandomly(props) {
           ];
         case "Tiefling":
           return names["Tiefling"][
-            Math.floor(Math.random() * names["Tiefling"].length)
+            Math.floor(Math.random() * names.Tiefling.length)
           ];
       }
     }
