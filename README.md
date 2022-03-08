@@ -6,10 +6,9 @@ on the bigger details of their campaign.
 
 This will pull from the dungeons and dragons API to generate NPCs with randomized races, classes, levels, spells, and items.
 
-In the future, I'd like to add more details like names to NPCs and Monsters and
-add options to generate templates for maps and rooms.
+It can also generate randomized monsters, with an option to have challenge rating based on the average level of your party.
 
-## Link to the API you plan to use
+## API used
 
 The link to fetch data:
 https://api.open5e.com/
@@ -17,25 +16,41 @@ https://api.open5e.com/
 The link to the API documentation:
 https://open5e.com/api-docs
 
-## Example data response you plan to use
+## Link to Deployed App
 
-const DND_CLASS_URL = "https://api.open5e.com/classes/";
+https://dmhelper.netlify.app/
 
-fetch(DND_CLASS_URL)
-.then((res) => res.json())
-.then((data) => {
-console.log(data);
-// pick a specific class
-console.log(data.results[5].name);
-// pick a random class
-const random_index = Math.floor(Math.random() \* data.count);
-console.log(data.results[random_index].name);
-})
-.catch((err) => console.error(`Oops, something went wrong: ${err}`));
+## Technologies used
 
-## Visual of your component hierarchy
+- React v17.0.2
+- https://imgur.com
+- https://dndbeyond.com
 
-![project1 DM helper wireframe](https://media.git.generalassemb.ly/user/41109/files/1ac20380-9a26-11ec-9cf8-e33f03076946)
+## Installation Instructions
+
+1. Fork and Clone this repo:
+
+   ```
+   git clone [HTTPS/SSH KEY]
+   ```
+
+2. Navigate into the cloned repo and install dependencies:
+
+   ```
+   npm i
+   ```
+
+3. Start the app:
+   ```
+   npm start
+   ```
+
+## Site Screenshots
+
+![Home](https://imgur.com/zmeTxk0.png)
+![Class List](https://imgur.com/596hrie.png)
+![Generated NPC](https://imgur.com/pERgtqM.png)
+![Generated Monster](https://imgur.com/x3EDQrS.png)
 
 ## Wire Frames
 
@@ -77,4 +92,5 @@ Clicking the other button will take you to a page listing all twelve classes in 
 - add more options for the NPC that determine how much detail to give them, for example:
   1. throwaway NPC 2. recurring NPC 3. integral NPC
 - Also pull from a random name generator API to be able to make names for the generated NPCs and Monsters
+- Add an encounters tab to save NPCs and Monsters on a page, in order of initiative
 - Add a page to generate randomized maps for users
