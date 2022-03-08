@@ -25,6 +25,7 @@ https://dmhelper.netlify.app/
 - React v17.0.2
 - https://imgur.com
 - https://dndbeyond.com
+- https://www.fantasynamegenerators.com/
 
 ## Installation Instructions
 

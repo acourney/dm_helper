@@ -1,5 +1,3 @@
-// TODO
-// add info box that this affects monster challenge rating
 import React from "react";
 import { DataContext } from "../../dataContext";
 import { useState, useContext } from "react";

@@ -21,13 +21,7 @@ function App() {
 
   const [formState, setFormState] = useState(initialState);
 
-  // const [navVisible, setNavVisible] = useState(false);
-
   const [npcNavOptionsVisible, setNpcNavOptionsVisible] = useState(false);
-
-  // function toggleNav() {
-  //   setNavVisible(!navVisible);
-  // }
 
   function toggleNpcNavOptionsVisible() {
     setNpcNavOptionsVisible(!npcNavOptionsVisible);
@@ -35,14 +29,12 @@ function App() {
 
   function resetNavView() {
     setNpcNavOptionsVisible(false);
-    // setNavVisible(false);
   }
 
   return (
     <div className="App">
       <header>
         <span className="header-menu">
-          {/* <p id="menu">&#9776;</p> */}
           <Link to="/">
             <img
               id="dm-helper-logo"
@@ -52,15 +44,6 @@ function App() {
           </Link>
         </span>
       </header>
-      {/* <div className="empty-header-container">
-        <Link to="/">
-          <img
-            id="dm-helper-logo-small-screen"
-            src="https://imgur.com/1jnJ7cZ.png"
-            alt="DM Helper Logo"
-          />
-        </Link>
-      </div> */}
       <nav id="main-nav">
         <Link to="/">Home</Link>
         <Link to="/input">Input</Link>
@@ -69,16 +52,7 @@ function App() {
           Generate NPCs
         </p>
       </nav>
-      {/* {navVisible ? (
-        <nav id="main-nav">
-          <Link to="/">Home</Link>
-          <Link to="/input">Input</Link>
-          <Link to="/monster-generator">Generate Monsters</Link>
-          <p id="expandable-npc-options" onClick={toggleNpcNavOptionsVisible}>
-            Generate NPCs
-          </p>
-        </nav>
-      ) : null} */}
+
       {npcNavOptionsVisible ? (
         <nav className="npc-options-nav">
           <Link onClick={resetNavView} to="/class-list">
@@ -97,8 +71,6 @@ function App() {
             <Route path="/monster-generator" element={<MonsterGenerator />} />
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" />} />
-
-            {/* <Route path="/npc-options" element={<NPCGeneratorButtons />} /> */}
             <Route path="/class-list" element={<GenerateNPCByClass />} />
             <Route path="/npc-randomizer" element={<GenerateNPCRandomly />} />
             <Route
